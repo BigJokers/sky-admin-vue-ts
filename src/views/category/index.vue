@@ -27,12 +27,7 @@
           <el-button type="primary"
                      class="continue"
                      @click="addClass('class')">
-            + 新增菜品分类
-          </el-button>
-          <el-button type="primary"
-                     style="margin-left:20px"
-                     @click="addClass('meal')">
-            + 新增套餐分类
+            + 新增材料分类
           </el-button>
         </div>
 
@@ -50,7 +45,7 @@
         <el-table-column prop="type"
                          label="分类类型">
           <template slot-scope="scope">
-            <span>{{ scope.row.type == '1' ? '菜品分类' : '套餐分类' }}</span>
+            <span>{{ scope.row.type == '1' ? '材料分类' : '分类' }}</span>
           </template>
         </el-table-column>
 
@@ -171,11 +166,7 @@ export default class extends Vue {
   private options: any = [
     {
       value: 1,
-      label: '菜品分类'
-    },
-    {
-      value: 2,
-      label: '套餐分类'
+      label: '材料分类'
     }
   ]
   private actionType: string = ''
@@ -191,7 +182,7 @@ export default class extends Vue {
   private type = ''
   private isSearch: boolean = false
   private classData: any = {
-    title: '添加菜品分类',
+    title: '添加材料分类',
     dialogVisible: false,
     categoryId: '',
     name: '',
@@ -273,10 +264,10 @@ export default class extends Vue {
   // 添加
   private addClass(st: any) {
     if (st == 'class') {
-      this.classData.title = '新增菜品分类'
+      this.classData.title = '新增材料分类'
       this.type = '1'
     } else {
-      this.classData.title = '新增套餐分类'
+      this.classData.title = '新增分类'
       this.type = '2'
     }
     this.action = 'add'

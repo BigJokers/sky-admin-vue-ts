@@ -2,15 +2,15 @@
   <div class="dashboard-container">
     <div class="container">
       <div class="tableBar">
-        <label style="margin-right: 10px">套餐名称：</label>
+        <label style="margin-right: 10px">材料名称：</label>
         <el-input v-model="input"
-                  placeholder="请填写套餐名称"
+                  placeholder="请填写材料名称"
                   style="width: 14%"
                   clearable
                   @clear="init"
                   @keyup.enter.native="initFun" />
 
-        <label style="margin-right: 10px; margin-left: 20px">套餐分类：</label>
+        <label style="margin-right: 10px; margin-left: 20px">材料分类：</label>
         <el-select v-model="categoryId"
                    style="width: 14%"
                    placeholder="请选择"
@@ -40,17 +40,17 @@
         <div class="tableLab">
           <span class="delBut non"
                 @click="deleteHandle('批量')">批量删除</span>
-          <!-- <span class="blueBug non" @click="statusHandle('1')">批量启售</span>
+          <span class="blueBug non" @click="statusHandle('1')">批量启售</span>
           <span
             style="border: none"
             class="delBut non"
             @click="statusHandle('0')"
             >批量停售</span
-          > -->
+          > 
           <el-button type="primary"
                      style="margin-left: 15px"
                      @click="addSetMeal('add')">
-            + 新建套餐
+            + 新建材料
           </el-button>
         </div>
       </div>
@@ -62,7 +62,7 @@
         <el-table-column type="selection"
                          width="25" />
         <el-table-column prop="name"
-                         label="套餐名称" />
+                         label="材料名称" />
         <el-table-column prop="image"
                          label="图片">
           <template slot-scope="{ row }">
@@ -77,7 +77,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="categoryName"
-                         label="套餐分类" />
+                         label="材料分类" />
         <el-table-column prop="price"
                          label="套餐价">
           <template slot-scope="scope">
@@ -94,9 +94,9 @@
         </el-table-column>
         <el-table-column prop="updateTime"
                          label="最后操作时间">
-          <!-- <template slot-scope="scope">
+           <!-- <template slot-scope="scope">
             {{ moment(scope.row.lastUpdateTime).format('YYYY-MM-DD h:m:s') }}
-          </template> -->
+          </template>  -->
         </el-table-column>
         <el-table-column label="操作"
                          width="250"
@@ -238,7 +238,7 @@ export default class extends Vue {
         return this.$message.error('请选择删除对象')
       }
     }
-    this.$confirm('确定删除该套餐?', '确定删除', {
+    this.$confirm('确定删除该材料?', '确定删除', {
       confirmButtonText: '删除',
       cancelButtonText: '取消',
       type: 'warning'

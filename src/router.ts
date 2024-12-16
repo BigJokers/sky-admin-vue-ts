@@ -29,12 +29,12 @@ const router = new Router({
       path: "/login",
       component: () =>
         import(/* webpackChunkName: "login" */ "@/views/login/index.vue"),
-      meta: { title: "苍穹外卖", hidden: true, notNeedAuth: true }
+      meta: { title: "龙清材料", hidden: true, notNeedAuth: true }
     },
     {
       path: "/404",
       component: () => import(/* webpackChunkName: "404" */ "@/views/404.vue"),
-      meta: { title: "苍穹外卖", hidden: true, notNeedAuth: true }
+      meta: { title: "龙清材料", hidden: true, notNeedAuth: true }
     },
     {
       path: "/",
@@ -70,21 +70,13 @@ const router = new Router({
             icon: "icon-order"
           }
         },
-        {
-          path: "setmeal",
-          component: () =>
-            import(/* webpackChunkName: "shopTable" */ "@/views/setmeal/index.vue"),
-          meta: {
-            title: "套餐管理",
-            icon: "icon-combo"
-          }
-        },
+
         {
           path: "dish",
           component: () =>
             import(/* webpackChunkName: "shopTable" */ "@/views/dish/index.vue"),
           meta: {
-            title: "菜品管理",
+            title: "材料管理",
             icon: "icon-dish"
           }
         },
@@ -93,7 +85,7 @@ const router = new Router({
           component: () =>
             import(/* webpackChunkName: "shopTable" */ "@/views/dish/addDishtype.vue"),
           meta: {
-            title: "添加菜品",
+            title: "添加材料",
             hidden: true
           }
         },
@@ -127,15 +119,15 @@ const router = new Router({
           }
         },
         
-        {
-          path: "/setmeal/add",
-          component: () =>
-            import(/* webpackChunkName: "shopTable" */ "@/views/setmeal/addSetmeal.vue"),
-          meta: {
-            title: "添加套餐",
-            hidden: true
-          }
-        }
+        // {
+        //   path: "/setmeal/add",
+        //   component: () =>
+        //     import(/* webpackChunkName: "shopTable" */ "@/views/setmeal/addSetmeal.vue"),
+        //   meta: {
+        //     title: "添加套餐",
+        //     hidden: true
+        //   }
+        // }
       ]
     },
     {

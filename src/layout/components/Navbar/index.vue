@@ -1,15 +1,10 @@
 <template>
   <div class="navbar">
-    <div class="statusBox">
-      <hamburger id="hamburger-container"
+    
+    <hamburger id="hamburger-container"
                  :is-active="sidebar.opened"
                  class="hamburger-container"
                  @toggleClick="toggleSideBar" />
-      <span v-if="status===1"
-            class="businessBtn">营业中</span>
-      <span v-else
-            class="businessBtn closing">打烊中</span>
-    </div>
 
     <div :key="restKey"
          class="right-menu">
@@ -73,6 +68,12 @@
     <Password :dialog-form-visible="dialogFormVisible"
               @handleclose="handlePwdClose" />
     <!-- end -->
+    <div class="statusBox">
+      <span v-if="status===1"
+            class="businessBtn">营业中</span>
+      <span v-else
+            class="businessBtn closing">打烊中</span>
+    </div>
   </div>
 </template>
 
@@ -312,13 +313,15 @@ export default class extends Vue {
 
   // box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .statusBox {
-    float: left;
+    float: right;
     height: 100%;
     align-items: center;
     display: flex;
   }
   .hamburger-container {
     // line-height: 54px;
+    float: left;
+    margin-top: 20px;
 
     padding: 0 12px 0 20px;
     cursor: pointer;

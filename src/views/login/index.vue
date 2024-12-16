@@ -1,16 +1,11 @@
 <template>
   <div class="login">
     <div class="login-box">
-      <div class="image"></div>
       <div class="login-form">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules">
           <div class="login-form-title">
-            <!-- <img
-              src="@/assets/login/icon_logo.png"
-              style="width: 149px; height: 38px"
-              alt=""
-            /> -->
-            <span class="title-label">智能平台</span>
+        
+            <span class="title-label">龙清材料</span>
           </div>
           <el-form-item prop="username">
             <el-input
@@ -133,6 +128,7 @@ export default class extends Vue {
   height: 474.38px;
   border-radius: 8px;
   display: flex;
+  justify-content: center;
   .image {
     width: 60%;
     height: auto;
@@ -148,7 +144,7 @@ export default class extends Vue {
 .login-form {
   background: #ffffff;
   width: 40%;
-  border-radius: 0px 8px 8px 0px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -10,16 +10,16 @@
                label-width="180px"
                class="demo-ruleForm">
         <div>
-          <el-form-item label="菜品名称:"
+          <el-form-item label="材料名称:"
                         prop="name">
             <el-input v-model="ruleForm.name"
-                      placeholder="请填写菜品名称"
+                      placeholder="请填写材料名称"
                       maxlength="20" />
           </el-form-item>
-          <el-form-item label="菜品分类:"
+          <el-form-item label="材料分类:"
                         prop="categoryId">
             <el-select v-model="ruleForm.categoryId"
-                       placeholder="请选择菜品分类">
+                       placeholder="请选择材料分类">
               <el-option v-for="(item, index) in dishList"
                          :key="index"
                          :label="item.name"
@@ -28,62 +28,15 @@
           </el-form-item>
         </div>
         <div>
-          <el-form-item label="菜品价格:"
+          <el-form-item label="材料价格:"
                         prop="price">
             <el-input v-model="ruleForm.price"
-                      placeholder="请设置菜品价格" />
+                      placeholder="请设置材料价格" />
           </el-form-item>
         </div>
-        <el-form-item label="口味做法配置:">
-          <el-form-item>
-            <div class="flavorBox">
-              <span v-if="dishFlavors.length == 0"
-                    class="addBut"
-                    @click="addFlavore">
-                + 添加口味</span>
-              <div v-if="dishFlavors.length != 0"
-                   class="flavor">
-                <div class="title">
-                  <span>口味名（3个字内）</span>
-                  <!-- <span class="des-box">口味标签（输入标签回车添加）</span> -->
-                </div>
-                <div class="cont">
-                  <div v-for="(item, index) in dishFlavors"
-                       :key="index"
-                       class="items">
-                    <div class="itTit">
-                      <!-- :dish-flavors-data="filterDishFlavorsData()" -->
-                      <SelectInput :dish-flavors-data="leftDishFlavors"
-                                   :index="index"
-                                   :value="item.name"
-                                   @select="selectHandle" />
-                    </div>
-                    <div class="labItems"
-                         style="display: flex">
-                      <span v-for="(it, ind) in item.value"
-                            :key="ind">{{ it }}
-                        <i @click="delFlavorLabel(index, ind)">X</i></span>
-                      <div class="inputBox"
-                           :style="inputStyle" />
-                    </div>
-                    <span class="delFlavor delBut non"
-                          @click="delFlavor(item.name)">删除</span>
-                  </div>
-                </div>
-                <div v-if="
-                       !!this.leftDishFlavors.length &&
-                         this.dishFlavors.length < this.dishFlavorsData.length
-                     "
-                     class="addBut"
-                     @click="addFlavore">
-                  添加口味
-                </div>
-              </div>
-            </div>
-          </el-form-item>
-        </el-form-item>
+        
         <div>
-          <el-form-item label="菜品图片:"
+          <el-form-item label="材料图片:"
                         prop="image">
             <image-upload :prop-image-url="imageUrl"
                           @imageChange="imageChange">
@@ -92,13 +45,13 @@
           </el-form-item>
         </div>
         <div class="address">
-          <el-form-item label="菜品描述:"
+          <el-form-item label="材料描述:"
                         prop="region">
             <el-input v-model="ruleForm.description"
                       type="textarea"
                       :rows="3"
                       maxlength="200"
-                      placeholder="菜品描述，最长200字" />
+                      placeholder="材料描述，最长200字" />
           </el-form-item>
         </div>
         <div class="subBox address">
@@ -151,9 +104,9 @@ export default class extends Vue {
   private imageUrl: string = ''
   private actionType: string = ''
   private dishList: string[] = []
-  private dishFlavorsData: any[] = [] //原始口味数据
-  private dishFlavors: any[] = [] //待上传口味的数据
-  private leftDishFlavors: any[] = [] //下拉框剩余可选择的口味数据
+  private dishFlavorsData: any[] = [] //原始kg数据
+  private dishFlavors: any[] = [] //待上传kg的数据
+  private leftDishFlavors: any[] = [] //下拉框剩余可选择的kg数据
   private vueRest = '1'
   private index = 0
   private inputStyle = { flex: 1 }
@@ -179,11 +132,11 @@ export default class extends Vue {
           required: true,
           validator: (rule: any, value: string, callback: Function) => {
             if (!value) {
-              callback(new Error('请输入菜品名称'))
+              callback(new Error('请输入材料名称'))
             } else {
               const reg = /^([A-Za-z0-9\u4e00-\u9fa5]){2,20}$/
               if (!reg.test(value)) {
-                callback(new Error('菜品名称输入不符，请输入2-20个字符'))
+                callback(new Error('材料名称输入不符，请输入2-20个字符'))
               } else {
                 callback()
               }
@@ -193,22 +146,22 @@ export default class extends Vue {
         }
       ],
       categoryId: [
-        { required: true, message: '请选择菜品分类', trigger: 'change' }
+        { required: true, message: '请选择材料分类', trigger: 'change' }
       ],
       image: {
         required: true,
-        message: '菜品图片不能为空'
+        message: '材料图片不能为空'
       },
       price: [
         {
           required: true,
-          // 'message': '请填写菜品价格',
+          // 'message': '请填写材料价格',
           validator: (rules: any, value: string, callback: Function) => {
             const reg = /^([1-9]\d{0,5}|0)(\.\d{1,2})?$/
             if (!reg.test(value) || Number(value) <= 0) {
               callback(
                 new Error(
-                  '菜品价格格式有误，请输入大于零且最多保留两位小数的金额'
+                  '材料价格格式有误，请输入大于零且最多保留两位小数的金额'
                 )
               )
             } else {
@@ -224,7 +177,7 @@ export default class extends Vue {
 
   created() {
     this.getDishList()
-    // 口味临时数据
+    // kg临时数据
     this.getFlavorListHand()
     this.actionType = this.$route.query.id ? 'edit' : 'add'
     if (this.$route.query.id) {
@@ -238,7 +191,7 @@ export default class extends Vue {
     this.getLeftDishFlavors()
   }
 
-  //过滤已选择的口味下拉框无法再次选择
+  //过滤已选择的kg下拉框无法再次选择
   getLeftDishFlavors() {
     let arr = []
     this.dishFlavorsData.map(item => {
@@ -279,28 +232,28 @@ export default class extends Vue {
     })
   }
 
-  // 按钮 - 添加口味
+  // 按钮 - 添加kg
   private addFlavore() {
     this.dishFlavors.push({ name: '', value: [] }) // JSON.parse(JSON.stringify(this.dishFlavorsData))
   }
 
-  // 按钮 - 删除口味
+  // 按钮 - 删除kg
   private delFlavor(name: string) {
     let ind = this.dishFlavors.findIndex(item => item.name === name)
     this.dishFlavors.splice(ind, 1)
   }
 
-  // 按钮 - 删除口味标签
+  // 按钮 - 删除kg标签
   private delFlavorLabel(index: number, ind: number) {
     this.dishFlavors[index].value.splice(ind, 1)
   }
 
-  //口味位置记录
+  //kd位置记录
   private flavorPosition(index: number) {
     this.index = index
   }
 
-  // 添加口味标签
+  // 添加kd标签
   private keyDownHandle(val: any) {
     if (event) {
       event.cancelBubble = true
@@ -314,7 +267,7 @@ export default class extends Vue {
     }
   }
 
-  // 获取菜品分类
+  // 获取kg分类
   private getDishList() {
     getCategoryList({ type: 1 }).then(res => {
       if (res.data.code === 1) {
@@ -331,14 +284,14 @@ export default class extends Vue {
     })
   }
 
-  // 获取口味列表
+  // 获取kg列表
   private getFlavorListHand() {
     // flavor flavorData
     this.dishFlavorsData = [
-      { name: '甜味', value: ['无糖', '少糖', '半糖', '多糖', '全糖'] },
-      { name: '温度', value: ['热饮', '常温', '去冰', '少冰', '多冰'] },
-      { name: '忌口', value: ['不要葱', '不要蒜', '不要香菜', '不要辣'] },
-      { name: '辣度', value: ['不辣', '微辣', '中辣', '重辣'] }
+      { name: '小型', value: ['1KG', '2KG', '3KG', '4KG', '5KG'] },
+      { name: '中型', value: ['10KG', '20KG', '30KG', '40KG', '50KG'] },
+      { name: '大型', value: ['100KG', '200KG', '300KG', '400KG'] },
+      { name: '重型', value: ['1000KG', '2000KG', '3000KG', '4000KG'] }
     ]
   }
 
@@ -363,7 +316,7 @@ export default class extends Vue {
           addDish(params)
             .then(res => {
               if (res.data.code === 1) {
-                this.$message.success('菜品添加成功！')
+                this.$message.success('材料添加成功！')
                 if (!st) {
                   this.$router.push({ path: '/dish' })
                 } else {
@@ -397,13 +350,13 @@ export default class extends Vue {
             .then(res => {
               if (res && res.data && res.data.code === 1) {
                 this.$router.push({ path: '/dish' })
-                this.$message.success('菜品修改成功！')
+                this.$message.success('材料修改成功！')
               } else {
                 this.$message.error(res.data.desc || res.data.msg)
               }
               // if (res.data.code == 200) {
               //   this.$router.push({'path': '/dish'})
-              //   this.$message.success('菜品修改成功！')
+              //   this.$message.success('修改成功！')
               // } else {
               //   this.$message.error(res.data.desc || res.data.message)
               // }

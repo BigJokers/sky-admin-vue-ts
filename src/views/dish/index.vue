@@ -2,15 +2,15 @@
   <div class="dashboard-container">
     <div class="container">
       <div class="tableBar">
-        <label style="margin-right: 10px">菜品名称：</label>
+        <label style="margin-right: 10px">材料名称：</label>
         <el-input v-model="input"
-                  placeholder="请填写菜品名称"
+                  placeholder="请填写材料名称"
                   style="width: 14%"
                   clearable
                   @clear="init"
                   @keyup.enter.native="initFun" />
 
-        <label style="margin-right: 10px; margin-left: 20px">菜品分类：</label>
+        <label style="margin-right: 10px; margin-left: 20px">材料分类：</label>
         <el-select v-model="categoryId"
                    style="width: 14%"
                    placeholder="请选择"
@@ -41,17 +41,17 @@
         <div class="tableLab">
           <span class="delBut non"
                 @click="deleteHandle('批量', null)">批量删除</span>
-          <!-- <span class="blueBug non" @click="statusHandle('1')">批量启售</span>
+          <!--  <span class="blueBug non" @click="statusHandle('1')">批量启售</span>
           <span
             style="border: none"
             class="delBut non"
             @click="statusHandle('0')"
             >批量停售</span
-          > -->
+          >  -->
           <el-button type="primary"
                      style="margin-left: 15px"
                      @click="addDishtype('add')">
-            + 新建菜品
+            + 新建材料
           </el-button>
         </div>
       </div>
@@ -63,7 +63,7 @@
         <el-table-column type="selection"
                          width="25" />
         <el-table-column prop="name"
-                         label="菜品名称" />
+                         label="材料名称" />
         <el-table-column prop="image"
                          label="图片">
           <template slot-scope="{ row }">
@@ -78,7 +78,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="categoryName"
-                         label="菜品分类" />
+                         label="材料分类" />
         <el-table-column label="售价">
           <template slot-scope="scope">
             <span style="margin-right: 10px">￥{{ (scope.row.price ).toFixed(2)*100/100 }}</span>
@@ -295,7 +295,7 @@ export default class extends Vue {
       dishStatusByStatus(this.dishState)
         .then(res => {
           if (res && res.data && res.data.code === 1) {
-            this.$message.success('菜品状态已经更改成功！')
+            this.$message.success('材料状态已经更改成功！')
             this.init()
           } else {
             this.$message.error(res.data.msg)

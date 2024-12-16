@@ -11,8 +11,8 @@
         alt=""
         style="width: 120px; height: 31px"
       /> -->
-        <span v-if="!isCollapse" style="font-size: 20px; font-weight: 800;">智能外卖平台</span>
-        <span v-else  style="font-size: 20px; font-weight: 800;">外卖</span>
+        <span v-if="!isCollapse" style="font-size: 20px; font-weight: 800;">龙清材料系统</span>
+        <span v-else  style="font-size: 20px; font-weight: 800;">龙清</span>
     </div>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu :default-openeds="defOpen"

@@ -7,11 +7,11 @@
     <Orderview :orderviewData="orderviewData" />
     <!-- end -->
     <div class="homeMain">
-      <!-- 菜品总览 -->
+      <!-- 材料总览 -->
       <CuisineStatistics :dishesData="dishesData" />
       <!-- end -->
       <!-- 套餐总览 -->
-      <SetMealStatistics :setMealData="setMealData" />
+      <!-- <SetMealStatistics :setMealData="setMealData" /> -->
       <!-- end -->
     </div>
     <!-- 订单信息 -->
@@ -29,8 +29,8 @@ import {
   getBusinessData,
   getDataOverView, //营业数据
   getOrderData, //订单管理今日订单
-  getOverviewDishes, //菜品总览
-  getSetMealStatistics, //套餐总览
+  getOverviewDishes, //材料总览
+  /* getSetMealStatistics, //套餐总览 */
 } from '@/api/index'
 import { getOrderListBy } from '@/api/order'
 // 组件
@@ -38,7 +38,7 @@ import { getOrderListBy } from '@/api/order'
 import Overview from './components/overview.vue'
 // 订单管理
 import Orderview from './components/orderview.vue'
-// 菜品总览
+// 材料总览
 import CuisineStatistics from './components/cuisineStatistics.vue'
 // 套餐总览
 import SetMealStatistics from './components/setMealStatistics.vue'
@@ -89,7 +89,7 @@ export default class extends Vue {
     const data = await getOrderData()
     this.orderviewData = data.data.data
   }
-  // 获取菜品总览数据
+  // 获取材料总览数据
   async getOverStatisticsData() {
     const data = await getOverviewDishes()
     this.dishesData = data.data.data

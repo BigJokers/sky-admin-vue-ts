@@ -30,7 +30,7 @@
             @row-click="handleTable"
           >
             <el-table-column prop="number" label="订单号"> </el-table-column>
-            <el-table-column label="订单菜品">
+            <el-table-column label="订单材料">
               <template slot-scope="scope">
                 <div class="ellipsisHidden">
                   <el-popover
@@ -90,7 +90,7 @@
             </el-table-column>
             <el-table-column
               prop="tablewareNumber"
-              label="餐具数量"
+              label=""
               min-width="80"
               align="center"
               v-if="status === 3"
@@ -250,7 +250,7 @@
           </div>
 
           <div class="dish-info">
-            <div class="dish-label">菜品</div>
+            <div class="dish-label">材料</div>
             <div class="dish-list">
               <div
                 v-for="(item, index) in diaForm.orderDetailList"
@@ -265,7 +265,7 @@
               </div>
             </div>
             <div class="dish-all-amount">
-              <label>菜品小计</label>
+              <label>材料小计</label>
               <span
                 >￥{{
                   (diaForm.amount - 6 - diaForm.packAmount).toFixed(2)
@@ -280,7 +280,7 @@
             <div class="amount-label">费用</div>
             <div class="amount-list">
               <div class="dish-amount">
-                <span class="amount-name">菜品小计：</span>
+                <span class="amount-name">材料小计：</span>
                 <span class="amount-price"
                   >￥{{
                     ((diaForm.amount - 6 - diaForm.packAmount).toFixed(2) *
@@ -370,7 +370,7 @@
         >
       </span>
     </el-dialog>
-    <!-- end -->
+    <!-- end --
     <!-- 拒单，取消弹窗 -->
     <el-dialog
       :title="cancelDialogTitle + '原因'"
@@ -463,11 +463,11 @@ export default class extends Vue {
     },
     {
       value: 2,
-      label: '菜品已销售完，暂时无法接单',
+      label: '材料已销售完，暂时无法接单',
     },
     {
       value: 3,
-      label: '餐厅已打烊，暂时无法接单',
+      label: '工厂已下班，暂时无法接单',
     },
     {
       value: 0,
@@ -482,11 +482,11 @@ export default class extends Vue {
     },
     {
       value: 2,
-      label: '菜品已销售完，暂时无法接单',
+      label: '材料已销售完，暂时无法接单',
     },
     {
       value: 3,
-      label: '骑手不足无法配送',
+      label: '配送员不足无法配送',
     },
     {
       value: 4,
